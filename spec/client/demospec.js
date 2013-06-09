@@ -1,3 +1,4 @@
+'use strict';
 
 describe('demo', function () {
     it('should do basic crud', function () {

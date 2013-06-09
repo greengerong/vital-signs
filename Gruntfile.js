@@ -9,11 +9,14 @@ module.exports = function (grunt) {
                 eqeqeq:true,
                 eqnull:true,
                 browser:true,
-                '-W015':true
+                '-W015':true,
+                reporter:'checkstyle',
+                force:true
             },
-            browser:{
+            client:{
                 options:{
                     browser:true,
+                    reporterOutput:'checkstyle/client/report.xml',
                     globals:{
                         jQuery:true,
                         describe:true,
@@ -28,6 +31,7 @@ module.exports = function (grunt) {
             node:{
                 options:{
                     browser:false,
+                    reporterOutput:'checkstyle/node/report.xml',
                     globals:{
                         module:true
                     },
@@ -58,7 +62,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-karma');
 
     // Default task(s).
-    grunt.registerTask('default', ["jshint:browser", "jshint:node", "nodeunit", "karma:local"]);
-    grunt.registerTask('ci', ["jshint:browser", "jshint:node", "nodeunit", "karma:ci"]);
+    grunt.registerTask('default', ["jshint:client", "jshint:node", "nodeunit", "karma:local"]);
+    grunt.registerTask('ci', ["jshint:client", "jshint:node", "nodeunit", "karma:ci"]);
 
 };

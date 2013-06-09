@@ -28,6 +28,7 @@ node_modules
 npm-debug.log
 
 spec/client/output
+checkstyle
 
 
 ########################
