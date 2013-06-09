@@ -11,7 +11,7 @@
     "grunt": "*",
     "grunt-contrib-jshint": "*",
     "grunt-contrib-nodeunit": "*",
-    "grunt-karma": "~0.4.4"
+    "grunt-karma": "*"
   },
   "scripts": {
     "start": "node app.js",
