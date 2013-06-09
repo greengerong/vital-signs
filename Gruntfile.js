@@ -4,11 +4,21 @@ module.exports = function (grunt) {
     grunt.initConfig({
         pkg:grunt.file.readJSON('package.json'),
         jshint:{
+            options:{
+                curly:true,
+                eqeqeq:true,
+                eqnull:true,
+                browser:true,
+                '-W015':true
+            },
             browser:{
                 options:{
                     browser:true,
                     globals:{
-                        jQuery:true
+                        jQuery:true,
+                        describe:true,
+                        it:true,
+                        expect:true
                     }
                 },
                 files:{
