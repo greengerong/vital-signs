@@ -20,13 +20,25 @@ var PluginsController = {
         },
 
         all:function (req, res) {
-
+            var result = [];
             fs.readdir(_pluginsDir, function (error, list) {
                 if (error) {
                     res.send(500, error);
                 }
+
                 res.send(list, 200);
             })
+        },
+        //plugins/about?name=:name
+        about:function (req, res) {
+            var plugin = req.param("name");
+            fs.readFile(_pluginsDir + plugin + "/about.txt", 'utf8', function (error, text) {
+                if (error) {
+                    res.send(500, error);
+                }
+
+                res.send(text, { 'Content-Type':'text/html' }, 200);
+            });
         }
 
     }
