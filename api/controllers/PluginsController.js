@@ -18,14 +18,16 @@ var PluginsController = {
         this._unzip(tmp_path, name, target_path);
         res.view();
     },
-
-    all:function (req, res) {
+    allPlugins:function (req, res) {
+        var exclude = ["app.js", ".DS_Store"];
         fs.readdir(_pluginsDir, function (error, list) {
             if (error) {
                 res.send(error, 500);
             }
-
-            res.send(list, 200);
+            var plugins = list.filter(function (item) {
+                return exclude.indexOf(item) == -1;
+            });
+            res.send(plugins, 200);
         });
     },
     //plugins/about?name=:name
@@ -52,6 +54,7 @@ var PluginsController = {
             res.send(plugins, 200);
         });
     },
+    //plugins/addNpmPlugin?name=:name
     addNpmPlugin:function (req, res) {
         var name = req.param("name");
         if (name) {
