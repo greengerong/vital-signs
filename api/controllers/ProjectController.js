@@ -1,12 +1,11 @@
-var fs = require("fs")
+var fs = require("fs") , fsEx = require('fs-extra');
 
-var _projectDir = "./project/";
+var _projectDir = "./project/", defaultSetting = "default";
 
 var ProjectController = {
 
-    // To trigger this action locally, visit: `http://localhost:port/project/all`
     all:function (req, res) {
-        var exclude = ["default"];
+        var exclude = [defaultSetting];
         fs.readdir(_projectDir, function (error, list) {
             if (error) {
                 res.send(error, 500);
@@ -19,14 +18,27 @@ var ProjectController = {
 
     },
 
-    // To trigger this action locally, visit: `http://localhost:port/project/new`
     new:function (req, res) {
 
-        res.view();
+        var project = req.param("name");
+        if (!project) {
+            res.send(401);
+            return;
+        }
+
+        fsEx.copy(_projectDir + defaultSetting, _projectDir + project, function (err) {
+            if (err) {
+                res.send(error, 500);
+            }
+            res.send(200);
+        });
 
     },
 
-    // To trigger this action locally, visit: `http://localhost:port/project/remove`
+    config:function (req, res) {
+
+    },
+
     remove:function (req, res) {
         var project = req.param("name");
         if (!project) {
@@ -35,28 +47,12 @@ var ProjectController = {
         }
 
         var dir = _projectDir + project;
-        var deleteFolderRecursive = function (path) {
-            var files = [];
-            if (fs.existsSync(path)) {
-                files = fs.readdirSync(path);
-                files.forEach(function (file, index) {
-                    var curPath = path + "/" + file;
-                    if (fs.statSync(curPath).isDirectory()) {
-                        deleteFolderRecursive(curPath);
-                    } else { // delete file
-                        fs.unlinkSync(curPath);
-                    }
-                });
-                fs.rmdirSync(path);
+        fsEx.remove(dir, function (err) {
+            if (err) {
+                res.send(error, 500);
             }
-        };
-        try {
-            deleteFolderRecursive(dir);
             res.send(200);
-        } catch (e) {
-            res.send(e, 500);
-        }
-
+        });
     }
 
 };
