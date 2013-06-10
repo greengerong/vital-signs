@@ -10,8 +10,7 @@ module.exports = function (grunt) {
                 eqnull:true,
                 browser:true,
                 '-W015':true,
-                reporter:'checkstyle',
-                force:true
+                reporter:'checkstyle'
             },
             client:{
                 options:{
@@ -25,7 +24,7 @@ module.exports = function (grunt) {
                     }
                 },
                 files:{
-                    src:['asserts/**/*.js', "spec/client/**/*spec.js"]
+                    src:['asserts/**/*.js',"plugins/**/*.js", "spec/client/**/*spec.js"]
                 }
             },
             node:{

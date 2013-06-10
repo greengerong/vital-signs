@@ -5,9 +5,11 @@ module.exports.assets = {
 	// and then can be automatically injected in your layout/views via the view partials:
 	// ( assets.css(), assets.js() and assets.templateLibrary() )
 	sequence: [
-		'assets/mixins', 
+        'assets/bootstrap',
+        'assets/mixins',
 		'assets/js', 
 		'assets/styles', 
-		'assets/templates'
+		'assets/templates',
+        "plugins"
 	]
 };
