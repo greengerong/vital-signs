@@ -10,7 +10,7 @@ var app = angular.module("dashboardApp", [])
             show:function (title, type) {
                 var $container = $("." + messageBoxContainer);
                 if ($container.length < 1) {
-                    var $container = $("<div class='" + messageBoxContainer + "' style='position:fixed;width:100%;'></div>").prependTo(document.body);
+                    $container = $("<div class='" + messageBoxContainer + "' style='position:fixed;width:100%;'></div>").prependTo(document.body);
                 }
                 $container.html('<div class="box alert alert-block ' + messageBoxColor[type] + '">' +
                     '<button class="close" type="button">×</button>' +
@@ -33,17 +33,19 @@ var app = angular.module("dashboardApp", [])
     var getProxyUrl = function (url, method) {
         method = method || "get";
         return $window.dashboardConfig.proxy + method.toLowerCase() + "?url=" + encodeURIComponent(url);
-    }
+    };
 
     return {
         get:function () {
             var url = arguments[0];
             var proxyUrl = getProxyUrl(url);
+            var success;
             if (arguments.length === 2) {
-                var success = arguments[1];
+                success = arguments[1];
                 $http.get(proxyUrl).success(success).error(error);
             } else if (arguments.length === 3) {
-                var config = arguments[1], success = arguments[2];
+                var config = arguments[1];
+                success = arguments[2];
                 $http.get(proxyUrl, config).success(success).error(error);
             }
         },
@@ -51,11 +53,13 @@ var app = angular.module("dashboardApp", [])
             var url = arguments[0];
             var data = arguments[1];
             var proxyUrl = getProxyUrl(url, "post");
+            var success;
             if (arguments.length === 3) {
-                var success = arguments[2];
+                success = arguments[2];
                 $http.post(proxyUrl, data).success(success).error(error);
             } else if (arguments.length === 4) {
-                var config = arguments[2], success = arguments[3];
+                var config = arguments[2];
+                success = arguments[3];
                 $http.post(proxyUrl, data, config).success(success).error(error);
             }
         }

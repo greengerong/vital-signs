@@ -20,11 +20,13 @@ module.exports = function (grunt) {
                         jQuery:true,
                         describe:true,
                         it:true,
-                        expect:true
+                        expect:true,
+                        angular:true,
+                        $:true
                     }
                 },
                 files:{
-                    src:['asserts/**/*.js', "plugins/**/*.js", "spec/client/**/*spec.js","spec/client/**/*Spec.js"]
+                    src:['asserts/**/*.js', "plugins/**/*.js", "spec/client/**/*spec.js", "spec/client/**/*Spec.js"]
                 }
             },
             node:{
@@ -36,7 +38,7 @@ module.exports = function (grunt) {
                         sails:true
                     },
                     files:{
-                        src:['api/**/*.js', 'config/**/*.js', "spec/node/**/*spc.js","spec/node/**/*Spec.js"]
+                        src:['api/**/*.js', 'config/**/*.js', "spec/node/**/*spc.js", "spec/node/**/*Spec.js"]
                     }
                 }
             }
