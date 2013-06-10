@@ -24,7 +24,7 @@ module.exports = function (grunt) {
                     }
                 },
                 files:{
-                    src:['asserts/**/*.js',"plugins/**/*.js", "spec/client/**/*spec.js"]
+                    src:['asserts/**/*.js', "plugins/**/*.js", "spec/client/**/*spec.js","spec/client/**/*Spec.js"]
                 }
             },
             node:{
@@ -32,16 +32,17 @@ module.exports = function (grunt) {
                     browser:false,
                     reporterOutput:'checkstyle/node/report.xml',
                     globals:{
-                        module:true
+                        module:true,
+                        sails:true
                     },
                     files:{
-                        src:['api/**/*.js', 'config/**/*.js', "spec/node/**/*spec.js"]
+                        src:['api/**/*.js', 'config/**/*.js', "spec/node/**/*spc.js","spec/node/**/*Spec.js"]
                     }
                 }
             }
         },
         nodeunit:{
-            all:['spec/node/**/*spec.js']
+            all:['spec/node/**/*.js']
         },
         karma:{
             options:{
