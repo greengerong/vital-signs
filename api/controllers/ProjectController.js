@@ -22,7 +22,7 @@ var ProjectController = {
 
         var project = req.param("name");
         if (!project) {
-            res.send(401);
+            res.send(400);
             return;
         }
 
@@ -42,7 +42,7 @@ var ProjectController = {
     remove:function (req, res) {
         var project = req.param("name");
         if (!project) {
-            res.send(404);
+            res.send(400);
             return;
         }
 
