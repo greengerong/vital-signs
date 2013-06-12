@@ -1,3 +1,4 @@
+
 module.exports = {
 
     // Name of the application (used as default <title>)
@@ -29,7 +30,6 @@ module.exports = {
 
     express:{
         customMiddleware:function (app) {
-
             app.use(function (err, req, res, next) {
                 if (req.xhr) {
                     res.send(500, err);

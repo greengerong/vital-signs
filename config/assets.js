@@ -6,10 +6,9 @@ module.exports.assets = {
 	// ( assets.css(), assets.js() and assets.templateLibrary() )
 	sequence: [
         'assets/bootstrap',
+        'assets/styles',
         'assets/mixins',
-		'assets/js', 
-		'assets/styles', 
-		'assets/templates',
+        'assets/js/3plib',
         "plugins"
 	]
 };
