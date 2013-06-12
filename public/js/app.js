@@ -10,14 +10,28 @@ manageApp.
 
 var pluginsCtr = function ($scope, $http, $timeout) {
 
-    $http.get("/plugins/allPlugins").success(function (data) {
-        $timeout(function () {
-            data=["c","c","b","c"]
-            $scope.plugins = data.map(function (item) {
-                return {key:item};
+        var getDescription = function (plugins) {
+            angular.forEach(plugins, function (item) {
+                $http.get("/plugins/about?name=" + item.key).success(
+                    function (item) {
+                        return function (data) {
+                            $timeout(function () {
+                                item.desc = data;
+                            });
+                        };
+                    }(item));
+            });
+        };
+
+        $http.get("/plugins/allPlugins").success(function (data) {
+            $timeout(function () {
+                $scope.plugins = data.map(function (item) {
+                    return {key:item};
+                });
+                getDescription($scope.plugins);
             });
         });
-    });
-};
+    }
+    ;
 manageApp.controller("pluginsCtr", ["$scope", "$http", "$timeout", pluginsCtr]);
 

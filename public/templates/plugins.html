@@ -1,18 +1,15 @@
 <div class="container">
-    <div>
-        <div></div>
-        <div>{{item.value}}</div>
-    </div>
     <div class="accordion" id="showPlugins">
         <div class="accordion-group" ng-repeat="item in plugins">
             <div class="accordion-heading">
-                <a class="accordion-toggle" data-toggle="collapse" data-parent="#showPlugins" href="#collapse{{$index}}">
-                    {{item.key}}
+                <a class="accordion-toggle" data-toggle="collapse" data-parent="#showPlugins"
+                   href="#collapse{{$index}}">
+                    Plugin -- {{item.key}}
                 </a>
             </div>
             <div id="collapse{{$index}}" class="accordion-body collapse">
                 <div class="accordion-inner">
-                    {{item.value}}
+                    {{item.desc}}
                 </div>
             </div>
         </div>
