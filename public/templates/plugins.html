@@ -1,17 +1,40 @@
-<div class="container">
-    <div class="accordion" id="showPlugins">
-        <div class="accordion-group" ng-repeat="item in plugins">
-            <div class="accordion-heading">
-                <a class="accordion-toggle" data-toggle="collapse" data-parent="#showPlugins"
-                   href="#collapse{{$index}}">
-                    Plugin -- {{item.key}}
-                </a>
-            </div>
-            <div id="collapse{{$index}}" class="accordion-body collapse">
-                <div class="accordion-inner">
-                    {{item.desc}}
+<h2>Plugins manage</h2>
+<div class="row-fluid">
+    <div class="span8">
+        <div class="accordion" id="showPlugins">
+            <div class="accordion-group" ng-repeat="item in plugins">
+                <div class="accordion-heading">
+                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#showPlugins"
+                       href="#collapse{{$index}}">
+                        Plugin -- {{item.key}}
+                    </a>
+                </div>
+                <div id="collapse{{$index}}" class="accordion-body collapse">
+                    <div class="accordion-inner">
+                        {{item.desc}}
+                    </div>
                 </div>
             </div>
         </div>
+    </div>
+    <div class="span4">
+        <form method="post" name="addPlugins" enctype="multipart/form-data" action="/plugins/upload">
+            <fieldset>
+                <legend>Add plugin</legend>
+                <div class="control-group">
+                    <p>Plugins must include all the file (html, js, css, job) and a "about.txt"(In order to explain to
+                        how
+                        to use this plugin.)</p>
+                    <hr/>
+                    <div class="controls">
+                        <input type="file" class="input-medium" placeholder="Chose plugins zip..." id="thumbnail"
+                               name="thumbnail">
+                    </div>
+                </div>
+                <div class="text-right">
+                    <input type="submit" class="btn btn-primary" value="submit">
+                </div>
+            </fieldset>
+        </form>
     </div>
 </div>

@@ -11,12 +11,16 @@ var PluginsController = {
     },
 
     upload:function (req, res) {
+        if (!req.files.thumbnail.path || !req.files.thumbnail.name) {
+            res.send(400);
+            return;
+        }
         var tmp_path = req.files.thumbnail.path;
         var fileName = req.files.thumbnail.name;
         var name = fileName.substr(0, fileName.lastIndexOf("."));
         var target_path = _pluginsDir + name;
         this._unzip(tmp_path, name, target_path);
-        res.view();
+        res.redirect("manage/index")
     },
     allPlugins:function (req, res) {
         var exclude = ["app.js", ".DS_Store"];
@@ -33,6 +37,11 @@ var PluginsController = {
     //plugins/about?name=:name
     about:function (req, res) {
         var plugin = req.param("name");
+        if (!plugin) {
+            res.send(400);
+            return;
+        }
+
         fs.readFile(_pluginsDir + plugin + "/about.txt", 'utf8', function (error, text) {
             if (error) {
                 res.send(error, 500);
