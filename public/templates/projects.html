@@ -1,3 +1,28 @@
 <div>
     <span ng-repeat="item in projects" style="margin: 8px;"><a href="javascript:void(0);">{{item}}</a></span>
 </div>
+
+<hr/>
+<fieldset>
+    <legend>Add npm plugin</legend>
+    <form class="form-horizontal" name="projectForm" novalidate>
+        <div class="control-group" ng-class="{true:'error'}[projectForm.$invalid]">
+            <label class="control-label" for="projectName">Npm plugin name</label>
+
+            <div class="controls">
+                <input type="text" class="input input-xxlarge" placeholder="Typing project name..."
+                       id="projectName" name="projectName" ng-model="projectName" required="true"
+                       ui-validate="{'unique':'notUnique($value)'}">
+                <span class="help-block" ng-show="projectForm.projectName.$error.required">Name is required!</span>
+                    <span class="help-block"
+                          ng-show="projectForm.projectName.$error.unique">Name is must be unique!</span>
+
+            </div>
+        </div>
+        <div class="text-right">
+            <input type="button" class="btn btn-primary" ng-disabled="projectForm.$invalid|| !projectForm.$dirty"
+                   value="Add" ng-click="addProject();">
+        </div>
+        <div>{{result}}</div>
+    </form>
+</fieldset>

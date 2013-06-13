@@ -78,6 +78,29 @@ var projectsCtr = function ($scope, $http, $timeout, underscore) {
             $scope.projects = data;
         });
     });
+
+    $scope.notUnique = function (projectName) {
+        if (projectName) {
+            var result = underscore.filter($scope.projects, function (item) {
+                return item.toLowerCase() === projectName.toLowerCase();
+            });
+            return result.length == 0;
+        }
+        return true;
+    };
+    $scope.addProject = function () {
+        if ($scope.projectName) {
+            $http.get("/project/new?name=" + $scope.projectName).success(function () {
+                $timeout(function () {
+                    $scope.projects.push($scope.projectName);
+                    $scope.projectName = "";
+                    $scope.result = "success";
+                });
+            }).error(function (error) {
+                    $scope.result = "error:" + error;
+                });
+        }
+    };
 };
 
 manageApp.controller("pluginsCtr", ["$scope", "$http", "$timeout", pluginsCtr]);
