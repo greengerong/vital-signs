@@ -1,8 +1,11 @@
 <h2>Plugins manage</h2>
+
 <div class="row-fluid">
     <div class="span8">
+        <input type="text" class="input-medium search-query" ng-model="searchName"/>
+        <hr/>
         <div class="accordion" id="showPlugins">
-            <div class="accordion-group" ng-repeat="item in plugins">
+            <div class="accordion-group" ng-repeat="item in plugins |filter:searchName">
                 <div class="accordion-heading">
                     <a class="accordion-toggle" data-toggle="collapse" data-parent="#showPlugins"
                        href="#collapse{{$index}}">
