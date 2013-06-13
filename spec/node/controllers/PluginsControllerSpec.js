@@ -7,8 +7,9 @@ exports['plugins controller'] = {
 
     setUp:function (done) {
         req.files = {thumbnail:{path:"test-path", name:"test.zip"}};
-        res = {view:function () {
-        }};
+        var empty = function () {
+        };
+        res = {view:empty, redirect:empty};
         done();
     },
     'show unzip files':function (test) {
