@@ -36,6 +36,11 @@ var pluginsCtr = function ($scope, $http, $timeout) {
 
 var npmCtr = function ($scope, $http, $timeout) {
 
+    $http.get("/plugins/allNpmPlugins").success(function (data) {
+        $timeout(function () {
+            $scope.npmPlugins = data;
+        });
+    });
 };
 
 var navCtr = function ($scope, $location) {
