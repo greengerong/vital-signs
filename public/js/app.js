@@ -4,7 +4,8 @@ manageApp.
     $routeProvider.
         when('/plugins', {templateUrl:'/templates/plugins.html', controller:"pluginsCtr"}).
         when('/npm', {templateUrl:'/templates/npm.html', controller:"npmCtr"}).
-        otherwise({redirectTo:'/plugins'});
+        when('/projects', {templateUrl:'/templates/projects.html', controller:"projectsCtr"}).
+        otherwise({redirectTo:'/home'});
 }]).factory("underscore", ["$window", function ($window) {
     return $window._;
 }]);
