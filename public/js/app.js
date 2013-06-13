@@ -5,6 +5,7 @@ manageApp.
         when('/plugins', {templateUrl:'/templates/plugins.html', controller:"pluginsCtr"}).
         when('/npm', {templateUrl:'/templates/npm.html', controller:"npmCtr"}).
         when('/projects', {templateUrl:'/templates/projects.html', controller:"projectsCtr"}).
+        when('/home', {templateUrl:'/templates/home.html'}).
         otherwise({redirectTo:'/home'});
 }]).factory("underscore", ["$window", function ($window) {
     return $window._;
