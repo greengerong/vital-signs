@@ -1,4 +1,4 @@
-var manageApp = angular.module("manageApp", ["ui.bootstrap"]);
+var manageApp = angular.module("manageApp", ["ui.bootstrap", "ui.validate"]);
 manageApp.
     config(['$routeProvider', function ($routeProvider) {
     $routeProvider.
@@ -34,13 +34,23 @@ var pluginsCtr = function ($scope, $http, $timeout) {
     });
 };
 
-var npmCtr = function ($scope, $http, $timeout) {
+var npmCtr = function ($scope, $http, $timeout, underscore) {
 
     $http.get("/plugins/allNpmPlugins").success(function (data) {
         $timeout(function () {
             $scope.npmPlugins = data;
         });
     });
+
+    $scope.notUnique = function (npmPluginName) {
+        if (npmPluginName) {
+            var result = underscore.filter(this.npmPlugins, function (item) {
+                return item.toLowerCase() === npmPluginName.toLowerCase();
+            });
+            return result.length == 0;
+        }
+        return true;
+    };
 };
 
 var navCtr = function ($scope, $location) {
@@ -48,6 +58,6 @@ var navCtr = function ($scope, $location) {
 };
 
 manageApp.controller("pluginsCtr", ["$scope", "$http", "$timeout", pluginsCtr]);
-manageApp.controller("npmCtr", ["$scope", "$http", "$timeout", npmCtr]);
+manageApp.controller("npmCtr", ["$scope", "$http", "$timeout", "underscore", npmCtr]);
 manageApp.controller("navCtr", ["$scope", "$location", navCtr]);
 

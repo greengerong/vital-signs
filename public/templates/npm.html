@@ -1,3 +1,26 @@
 <div>
-<span ng-repeat="item in npmPlugins" style="margin: 8px;"><a href="javascript:void(0);">{{item}}</a></span>
+    <span ng-repeat="item in npmPlugins" style="margin: 8px;"><a href="javascript:void(0);">{{item}}</a></span>
 </div>
+<hr/>
+<fieldset>
+    <legend>Add npm plugin</legend>
+    <form class="form-horizontal" name="npmForm" novalidate>
+        <div class="control-group" ng-class="{true:'error'}[npmForm.$invalid]">
+            <label class="control-label" for="npmPluginName">Npm plugin name</label>
+
+            <div class="controls">
+                <input type="text" class="input input-xxlarge" placeholder="Typing plugins name..."
+                       id="npmPluginName" name="npmPluginName" ng-model="npmPluginName" required="true"
+                       ui-validate="{'unique':'notUnique($value)'}">
+                <span class="help-block" ng-show="npmForm.npmPluginName.$error.required">Name is required!</span>
+                    <span class="help-block"
+                          ng-show="npmForm.npmPluginName.$error.unique">Name is must be unique!</span>
+
+            </div>
+        </div>
+        <div class="text-right">
+            <input type="button" class="btn btn-primary" ng-disabled="npmForm.$invalid|| !npmForm.$dirty"
+                   value="Add">
+        </div>
+    </form>
+</fieldset>
