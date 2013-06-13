@@ -44,12 +44,26 @@ var npmCtr = function ($scope, $http, $timeout, underscore) {
 
     $scope.notUnique = function (npmPluginName) {
         if (npmPluginName) {
-            var result = underscore.filter(this.npmPlugins, function (item) {
+            var result = underscore.filter($scope.npmPlugins, function (item) {
                 return item.toLowerCase() === npmPluginName.toLowerCase();
             });
             return result.length == 0;
         }
         return true;
+    };
+
+    $scope.addNpm = function () {
+        if ($scope.npmPluginName) {
+            $http.get("/plugins/addNpmPlugin?name=" + $scope.npmPluginName).success(function (data) {
+                $timeout(function () {
+                    $scope.npmPlugins.push($scope.npmPluginName);
+                    $scope.npmPluginName = "";
+                    $scope.result = data;
+                });
+            }).error(function (error) {
+                    $scope.result = "error:" + error;
+                });
+        }
     };
 };
 

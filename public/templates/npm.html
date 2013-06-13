@@ -20,7 +20,8 @@
         </div>
         <div class="text-right">
             <input type="button" class="btn btn-primary" ng-disabled="npmForm.$invalid|| !npmForm.$dirty"
-                   value="Add">
+                   value="Add" ng-click="addNpm();">
         </div>
+        <div>{{result}}</div>
     </form>
 </fieldset>
