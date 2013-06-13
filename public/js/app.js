@@ -72,8 +72,16 @@ var npmCtr = function ($scope, $http, $timeout, underscore) {
 var navCtr = function ($scope, $location) {
     $scope.active = $location.$$path;
 };
+var projectsCtr = function ($scope, $http, $timeout, underscore) {
+    $http.get("/project/all").success(function (data) {
+        $timeout(function () {
+            $scope.projects = data;
+        });
+    });
+};
 
 manageApp.controller("pluginsCtr", ["$scope", "$http", "$timeout", pluginsCtr]);
 manageApp.controller("npmCtr", ["$scope", "$http", "$timeout", "underscore", npmCtr]);
+manageApp.controller("projectsCtr", ["$scope", "$http", "$timeout", "underscore", projectsCtr]);
 manageApp.controller("navCtr", ["$scope", "$location", navCtr]);
 
