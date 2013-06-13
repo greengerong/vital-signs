@@ -1,11 +1,13 @@
 <div class="container">
 
-    <ul class="nav nav-tabs">
-        <li>
-            <a href="#">Home</a>
+    <ul class="nav nav-tabs" ng-controller="navCtr">
+        <li ng-class="{true:'active'}[active=='/home']">
+            <a href="#/home" ng-click="active='/home';">Home</a>
         </li>
-        <li class="active"><a href="#/plugins">plugins</a></li>
-        <li><a href="#/npm">npm plugins</a></li>
+        <li ng-class="{true:'active'}[active=='/plugins']">
+            <a ng-click="active='/plugins';" href="#/plugins">plugins</a></li>
+        <li ng-class="{true:'active'}[active=='/npm']">
+            <a href="#/npm" ng-click="active='/npm';">npm plugins</a></li>
     </ul>
     <div ng-view></div>
 </div>
