@@ -1,4 +1,4 @@
-var http = require('http'), url = require("url");
+var http = require('http'), url = require("url"), requireUtil = require("../services/require-util");
 
 
 function Proxyer(req, res, method) {
@@ -106,17 +106,29 @@ function Proxyer(req, res, method) {
 
 var ProxyController = {
 
-    // To trigger this action locally, visit: `http://localhost:port/proxy/get`
     get:function (req, res) {
         new Proxyer(req, res, "GET").proxy();
 
     },
 
-    // To trigger this action locally, visit: `http://localhost:port/proxy/post`
     post:function (req, res) {
         new Proxyer(req, res, "POST").proxy();
 
+    },
+    //proxy?plugin=:plugin&job=:job
+    exec:function (req, res) {
+        try {
+            var job = req.param("job");
+            var plugin = req.param("plugin");
+            var path = "../../plugins/" + plugin + "/" + job + ".job";
+            var runner = require(path);
+            runner.run(req, res);
+//            requireUtil.removeCache(path);
+        } catch (ex) {
+            res.send("bad job(" + plugin + ":" + job + "). error :" + ex, 400);
+        }
     }
+
 
 };
 module.exports = ProxyController;
