@@ -1,6 +1,6 @@
 var i = 0;
 module.exports = {
     run:function (req, res) {
-        res.send("hello,  am from jenkins job." + (i++));
+        res.send("hello, I am from jenkins job." + (i++));
     }
 };
