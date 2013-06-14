@@ -38,7 +38,7 @@ module.exports = function (grunt) {
                         sails:true
                     },
                     files:{
-                        src:['api/**/*.js', 'config/**/*.js', "spec/node/**/*spc.js", "spec/node/**/*Spec.js"]
+                        src:['api/**/*.js', 'config/**/*.js', "plugins/**/*.job", "spec/node/**/*spc.js", "spec/node/**/*Spec.js"]
                     }
                 }
             }

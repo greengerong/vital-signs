@@ -1,0 +1,5 @@
+module.exports = {
+    run:function (req, res) {
+        res.send("hello, i am from jenkins job.");
+    }
+};
