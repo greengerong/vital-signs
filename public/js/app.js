@@ -1,4 +1,4 @@
-var manageApp = angular.module("manageApp", ["ui.bootstrap", "ui.validate"]);
+var manageApp = angular.module("manageApp", ["ui.bootstrap", "ui.validate","ui.codemirror"]);
 manageApp.
     config(['$routeProvider', function ($routeProvider) {
     $routeProvider.
@@ -104,13 +104,31 @@ var projectCtr = function ($scope, $http, $timeout, underscore) {
     };
 };
 
-var projectDetailCtr = function ($scope, $http, $timeout, $routeParams) {
+var projectDetailCtr = function ($scope, $http, $timeout, $routeParams, $window) {
     $scope.project = $routeParams.project;
+
+    $scope.htmlOptions = $scope.editorOptions = {
+        lineWrapping : true,
+        lineNumbers: true,
+        mode: 'html'
+    };
+    $scope.jsOptions = $scope.editorOptions = {
+        lineWrapping : true,
+        lineNumbers: true,
+        mode: 'javascript'
+    };
+
+    $scope.remove = function () {
+        var confirm = $window.confirm("Do you make sure to remove this project?");
+        if (confirm) {
+            console.log("remove");
+        }
+    };
 };
 
 manageApp.controller("pluginsCtr", ["$scope", "$http", "$timeout", pluginsCtr]);
 manageApp.controller("npmCtr", ["$scope", "$http", "$timeout", "underscore", npmCtr]);
 manageApp.controller("projectCtr", ["$scope", "$http", "$timeout", "underscore", projectCtr]);
 manageApp.controller("navCtr", ["$scope", "$location", navCtr]);
-manageApp.controller("projectDetailCtr", ["$scope", "$http", "$timeout", "$routeParams", projectDetailCtr]);
+manageApp.controller("projectDetailCtr", ["$scope", "$http", "$timeout", "$routeParams", "$window", projectDetailCtr]);
 

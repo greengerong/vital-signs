@@ -1,3 +1,43 @@
-<div>
-    project details--{{project}}
+<h2>Project details about <strong>{{project}}</strong></h2>
+
+<div class="text-right">
+    <a href="dashboard?project={{project}}" class="btn btn-info">view dashboard</a>
+    <input type="button" class="btn btn-info"
+           value="remove this" ng-click="remove();">
 </div>
+<hr/>
+<fieldset>
+    <legend>Project config</legend>
+    <form class="form-inline" name="projectForm" novalidate>
+        <div class="control-group" ng-class="{true:'error'}[projectForm.projectHtml.$invalid]">
+            <label class="control-label" for="projectHtml">Html</label>
+
+            <div class="controls">
+                <textarea ui-codemirror="htmlOptions" ng-model="projectHtml" id="projectHtml"
+                          name="projectHtml" required></textarea>
+                <br/>
+                <span class="help-block" ng-show="projectForm.projectHtml.$error.required">Html is required!</span>
+
+            </div>
+        </div>
+        <hr/>
+        <div class="control-group" ng-class="{true:'error'}[projectForm.projectConfig.$invalid]">
+            <label class="control-label" for="projectConfig">Config</label>
+
+            <div class="controls">
+                <textarea ui-codemirror="jsOptions" ng-model="projectConfig" id="projectConfig"
+                          name="projectConfig" required></textarea>
+
+                <br/>
+                <span class="help-block"
+                      ng-show="projectForm.projectConfig.$error.required">Project config is required!</span>
+
+            </div>
+        </div>
+        <div class="text-right">
+            <input type="button" class="btn btn-primary" ng-disabled="projectForm.$invalid|| !projectForm.$dirty"
+                   value="save" ng-click="addNpm();">
+        </div>
+        <div>{{result}}</div>
+    </form>
+
