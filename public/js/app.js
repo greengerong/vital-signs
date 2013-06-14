@@ -1,4 +1,4 @@
-var manageApp = angular.module("manageApp", ["ui.bootstrap", "ui.validate","ui.codemirror"]);
+var manageApp = angular.module("manageApp", ["ui.bootstrap", "ui.validate", "ui.codemirror"]);
 manageApp.
     config(['$routeProvider', function ($routeProvider) {
     $routeProvider.
@@ -108,14 +108,14 @@ var projectDetailCtr = function ($scope, $http, $timeout, $routeParams, $window)
     $scope.project = $routeParams.project;
 
     $scope.htmlOptions = $scope.editorOptions = {
-        lineWrapping : true,
-        lineNumbers: true,
-        mode: 'html'
+        lineWrapping:true,
+        lineNumbers:true,
+        mode:'htmlmixed'
     };
     $scope.jsOptions = $scope.editorOptions = {
-        lineWrapping : true,
-        lineNumbers: true,
-        mode: 'javascript'
+        lineWrapping:true,
+        lineNumbers:true,
+        mode:'javascript'
     };
 
     $scope.remove = function () {
@@ -123,6 +123,11 @@ var projectDetailCtr = function ($scope, $http, $timeout, $routeParams, $window)
         if (confirm) {
             console.log("remove");
         }
+    };
+
+    $scope.saveConfig = function () {
+        var config = {html:this.projectHtml, config:this.projectConfig};
+        console.log(config);
     };
 };
 
