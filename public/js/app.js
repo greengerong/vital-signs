@@ -4,7 +4,8 @@ manageApp.
     $routeProvider.
         when('/plugins', {templateUrl:'/templates/plugins.html', controller:"pluginsCtr"}).
         when('/npm', {templateUrl:'/templates/npm.html', controller:"npmCtr"}).
-        when('/projects', {templateUrl:'/templates/projects.html', controller:"projectsCtr"}).
+        when('/project', {templateUrl:'/templates/project.html', controller:"projectCtr"}).
+        when('/project/:project', {templateUrl:'/templates/project-detail.html', controller:"projectDetailCtr"}).
         when('/home', {templateUrl:'/templates/home.html'}).
         otherwise({redirectTo:'/home'});
 }]).factory("underscore", ["$window", function ($window) {
@@ -72,7 +73,7 @@ var npmCtr = function ($scope, $http, $timeout, underscore) {
 var navCtr = function ($scope, $location) {
     $scope.active = $location.$$path;
 };
-var projectsCtr = function ($scope, $http, $timeout, underscore) {
+var projectCtr = function ($scope, $http, $timeout, underscore) {
     $http.get("/project/all").success(function (data) {
         $timeout(function () {
             $scope.projects = data;
@@ -103,8 +104,13 @@ var projectsCtr = function ($scope, $http, $timeout, underscore) {
     };
 };
 
+var projectDetailCtr = function ($scope, $http, $timeout, $routeParams) {
+    $scope.project = $routeParams.project;
+};
+
 manageApp.controller("pluginsCtr", ["$scope", "$http", "$timeout", pluginsCtr]);
 manageApp.controller("npmCtr", ["$scope", "$http", "$timeout", "underscore", npmCtr]);
-manageApp.controller("projectsCtr", ["$scope", "$http", "$timeout", "underscore", projectsCtr]);
+manageApp.controller("projectCtr", ["$scope", "$http", "$timeout", "underscore", projectCtr]);
 manageApp.controller("navCtr", ["$scope", "$location", navCtr]);
+manageApp.controller("projectDetailCtr", ["$scope", "$http", "$timeout", "$routeParams", projectDetailCtr]);
 
