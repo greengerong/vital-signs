@@ -104,6 +104,13 @@ function Proxyer(req, res, method) {
     };
 }
 
+var getJobPath = function (req) {
+    var job = req.param("job");
+    var plugin = req.param("plugin");
+    var path = "../../plugins/" + plugin + "/" + job + ".job";
+    return {job:job, plugin:plugin, path:path};
+};
+s
 var ProxyController = {
 
     get:function (req, res) {
@@ -118,14 +125,23 @@ var ProxyController = {
     //proxy?plugin=:plugin&job=:job
     exec:function (req, res) {
         try {
-            var job = req.param("job");
-            var plugin = req.param("plugin");
-            var path = "../../plugins/" + plugin + "/" + job + ".job";
+            var __ret = getJobPath(req);
+            var job = __ret.job;
+            var plugin = __ret.plugin;
+            var path = __ret.path;
             var runner = require(path);
             runner.run(req, res);
 //            requireUtil.removeCache(path);
         } catch (ex) {
             res.send("bad job(" + plugin + ":" + job + "). error :" + ex, 400);
+        }
+    },
+    removeCache:function (req, res) {
+        try {
+            var path = getJobPath(req);
+            requireUtil.removeCache(path);
+        } catch (ex) {
+            res.send(ex, 400);
         }
     }
 
