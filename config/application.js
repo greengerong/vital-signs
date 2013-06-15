@@ -30,10 +30,12 @@ module.exports = {
     express:{
         customMiddleware:function (app) {
             app.error(function (err, req, res, next) {
+               console.log(arguments,"111");
                 if (req.xhr) {
                     res.send(500, err);
                     return;
                 }
+
                 next([err])
             });
         }

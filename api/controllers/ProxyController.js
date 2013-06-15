@@ -110,7 +110,7 @@ var getJobPath = function (req) {
     var path = "../../plugins/" + plugin + "/" + job + ".job";
     return {job:job, plugin:plugin, path:path};
 };
-s
+
 var ProxyController = {
 
     get:function (req, res) {

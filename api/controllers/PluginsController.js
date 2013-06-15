@@ -27,6 +27,7 @@ var PluginsController = {
         fs.readdir(_pluginsDir, function (error, list) {
             if (error) {
                 res.send(error, 500);
+                return;
             }
             var plugins = list.filter(function (item) {
                 return exclude.indexOf(item) == -1;
@@ -45,6 +46,7 @@ var PluginsController = {
         fs.readFile(_pluginsDir + plugin + "/about.txt", 'utf8', function (error, text) {
             if (error) {
                 res.send(error, 500);
+                return;
             }
 
             res.send(text, { 'Content-Type':'text/html' }, 200);
@@ -55,6 +57,7 @@ var PluginsController = {
         fs.readdir("./node_modules", function (error, list) {
             if (error) {
                 res.send(error, 500);
+                return;
             }
 
             var plugins = list.filter(function (item) {
@@ -66,16 +69,20 @@ var PluginsController = {
     //plugins/addNpmPlugin?name=:name
     addNpmPlugin:function (req, res) {
         var name = req.param("name");
-        if (name) {
-            var cmd = "npm install " + name + " --save-dev";
-            child_process.exec(cmd, function (error, stdout) {
-                if (error) {
-                    res.send(error, 500);
-                }
-                var msg = "npm plugins " + name + " installed. " + stdout;
-                res.send(msg, { 'Content-Type':'text/html' }, 200);
-            });
+        if (!name) {
+            res.send("name is required.", 400);
+            return;
         }
+
+        var cmd = "npm install " + name + " --save-dev";
+        child_process.exec(cmd, function (error, stdout) {
+            if (error) {
+                res.send(error, 500);
+                return;
+            }
+            var msg = "npm plugins " + name + " installed. " + stdout;
+            res.send(msg, { 'Content-Type':'text/html' }, 200);
+        });
     }
 
 };
