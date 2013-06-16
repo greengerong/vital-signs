@@ -124,6 +124,12 @@ var projectDetailCtr = function ($scope, $http, $timeout, $routeParams, $window)
         mode:'javascript'
     };
 
+    $http.get("/project/config?name=" + $scope.project).success(function (data) {
+        $timeout(function () {
+            $scope.config = data;
+        });
+    });
+
     $scope.remove = function () {
         var confirm = $window.confirm("Do you make sure to remove this project?");
         if (confirm) {
@@ -132,8 +138,7 @@ var projectDetailCtr = function ($scope, $http, $timeout, $routeParams, $window)
     };
 
     $scope.saveConfig = function () {
-        var config = {html:this.projectHtml, config:this.projectConfig};
-        console.log(config);
+        console.log($scope.config);
     };
 };
 

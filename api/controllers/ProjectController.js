@@ -56,6 +56,33 @@ var ProjectController = {
             }
             res.send(200);
         });
+    },
+    config:function (req, res) {
+        var project = req.param("name");
+        if (!project) {
+            res.send("Project name is required.", 400);
+            return;
+        }
+        var dir = _projectDir + project;
+        fs.readFile(dir + "/view.html", "utf-8", function (err, html) {
+            if (err) {
+                res.send(error, 500);
+                return;
+            }
+
+            var fun = function (html) {
+                fs.readFile(dir + "/setting.js", "utf-8", function (err, setting) {
+                    if (err) {
+                        res.send(error, 500);
+                        return;
+                    }
+                    res.send({html:html, setting:setting}, 200);
+                });
+            };
+
+            fun(html);
+
+        });
     }
 
 };

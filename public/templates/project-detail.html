@@ -13,7 +13,7 @@
             <label class="control-label" for="projectHtml">Html</label>
 
             <div class="controls">
-                <textarea ui-codemirror="htmlOptions" ng-model="projectHtml" id="projectHtml"
+                <textarea ui-codemirror="htmlOptions" ng-model="config.html" id="projectHtml"
                           name="projectHtml" required></textarea>
                 <br/>
                 <span class="help-block" ng-show="projectForm.projectHtml.$error.required">Html is required!</span>
@@ -25,7 +25,7 @@
             <label class="control-label" for="projectConfig">Config</label>
 
             <div class="controls">
-                <textarea ui-codemirror="jsOptions" ng-model="projectConfig" id="projectConfig"
+                <textarea ui-codemirror="jsOptions" ng-model="config.setting" id="projectConfig"
                           name="projectConfig" required></textarea>
 
                 <br/>
