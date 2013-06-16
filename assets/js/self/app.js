@@ -32,7 +32,7 @@ var app = angular.module("dashboardApp", [])
 
     var getProxyUrl = function (url, method) {
         method = method || "get";
-        return $window.dashboardConfig.proxy + method.toLowerCase() + "?url=" + encodeURIComponent(url);
+        return "/proxy/" + method.toLowerCase() + "?url=" + encodeURIComponent(url);
     };
 
     return {
@@ -60,6 +60,19 @@ var app = angular.module("dashboardApp", [])
             } else if (arguments.length === 4) {
                 var config = arguments[2];
                 success = arguments[3];
+                $http.post(proxyUrl, data, config).success(success).error(error);
+            }
+        },
+        job:function () {
+            var data = arguments[0];
+            var proxyUrl = "/proxy/exec";
+            var success;
+            if (arguments.length === 2) {
+                success = arguments[1];
+                $http.post(proxyUrl, data).success(success).error(error);
+            } else if (arguments.length === 3) {
+                var config = arguments[1];
+                success = arguments[2];
                 $http.post(proxyUrl, data, config).success(success).error(error);
             }
         }
@@ -90,6 +103,5 @@ var app = angular.module("dashboardApp", [])
 
 function dashboardCtr($scope, $window) {
     $scope.dashboardConfig = $window.dashboardConfig;
-
 }
 app.controller("dashboardCtr", ["$scope", "$window", dashboardCtr]);
