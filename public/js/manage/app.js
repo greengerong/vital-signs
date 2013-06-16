@@ -78,7 +78,7 @@ var npmCtr = function ($scope, $http, $timeout, underscore) {
 };
 
 var navCtr = function ($scope, $location) {
-    $scope.active = $location.$$path;
+    $scope.active = $location.$$path || "/home";
 };
 var projectCtr = function ($scope, $http, $timeout, underscore) {
     $http.get("/project/all").success(function (data) {
