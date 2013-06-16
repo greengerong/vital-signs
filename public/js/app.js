@@ -110,7 +110,7 @@ var projectCtr = function ($scope, $http, $timeout, underscore) {
     };
 };
 
-var projectDetailCtr = function ($scope, $http, $timeout, $routeParams, $window) {
+var projectDetailCtr = function ($scope, $http, $timeout, $routeParams, $window, $location) {
     $scope.project = $routeParams.project;
 
     $scope.htmlOptions = $scope.editorOptions = {
@@ -133,7 +133,9 @@ var projectDetailCtr = function ($scope, $http, $timeout, $routeParams, $window)
     $scope.remove = function () {
         var confirm = $window.confirm("Do you make sure to remove this project?");
         if (confirm) {
-            console.log("remove");
+            $http.post("/project/remove", {name:$scope.project}).success(function (data) {
+                $location.path("/project");
+            });
         }
     };
 
@@ -146,5 +148,6 @@ manageApp.controller("pluginsCtr", ["$scope", "$http", "$timeout", pluginsCtr]);
 manageApp.controller("npmCtr", ["$scope", "$http", "$timeout", "underscore", npmCtr]);
 manageApp.controller("projectCtr", ["$scope", "$http", "$timeout", "underscore", projectCtr]);
 manageApp.controller("navCtr", ["$scope", "$location", navCtr]);
-manageApp.controller("projectDetailCtr", ["$scope", "$http", "$timeout", "$routeParams", "$window", projectDetailCtr]);
+manageApp.controller("projectDetailCtr", ["$scope", "$http", "$timeout", "$routeParams", "$window",
+    "$location", projectDetailCtr]);
 
