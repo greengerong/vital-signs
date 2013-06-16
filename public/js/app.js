@@ -35,8 +35,8 @@ var pluginsCtr = function ($scope, $http, $timeout) {
             getDescription($scope.plugins);
         });
 
-        $scope.cleanRequireCache = function (name, job) {
-            $http.get("/proxy/removeCache?plugin=" + name + "&job=" + job).success(function () {
+        $scope.cleanRequireCache = function () {
+            $http.get("/proxy/removeCache?plugin=" + this.cleanJob.pluginName + "&job=" + this.cleanJob.jobName + "&rn=" + Math.random()).success(function () {
                 console.log("success");
             });
         }

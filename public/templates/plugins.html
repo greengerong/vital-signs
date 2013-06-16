@@ -50,7 +50,7 @@
 
                     <div class="controls">
                         <input type="text" class="input-medium" placeholder="Typing plugin name.." id="pluginName"
-                               name="pluginName" ng-model="pluginName" required="">
+                               name="pluginName" ng-model="cleanJob.pluginName" required="">
                         <span class="help-block" ng-show="cleanJobCacheForm.pluginName.$error.required">Plugin name is required!</span>
                     </div>
                 </div>
@@ -60,7 +60,7 @@
 
                     <div class="controls">
                         <input type="text" class="input-medium" placeholder="Typing job name.." id="jobName"
-                               name="jobName" ng-model="jobName" required="">
+                               name="jobName" ng-model="cleanJob.jobName" required="">
                         <span class="help-block" ng-show="cleanJobCacheForm.jobName.$error.required">Job name is required!</span>
 
                     </div>
