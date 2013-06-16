@@ -1,11 +1,12 @@
 <div>
-    <span ng-repeat="item in npmPlugins" style="margin: 8px;"><a target="_blank" href="https://npmjs.org/package/{{item}}">{{item}}</a></span>
+    <span ng-repeat="item in npmPlugins" style="margin: 8px;"><a target="_blank"
+                                                                 href="https://npmjs.org/package/{{item}}">{{item}}</a></span>
 </div>
 <hr/>
 <fieldset>
     <legend>Add npm plugin</legend>
-    <form class="form-horizontal" name="npmForm" novalidate>
-        <div class="control-group" ng-class="{true:'error'}[npmForm.$invalid]">
+    <form class="form-horizontal" name="npmForm">
+        <div class="control-group" ng-class="{true:'error'}[npmForm.npmPluginName.$invalid]">
             <label class="control-label" for="npmPluginName">Npm plugin name</label>
 
             <div class="controls">

@@ -34,6 +34,12 @@ var pluginsCtr = function ($scope, $http, $timeout) {
             });
             getDescription($scope.plugins);
         });
+
+        $scope.cleanRequireCache = function (name, job) {
+            $http.get("/proxy/removeCache?plugin=" + name + "&job=" + job).success(function () {
+                console.log("success");
+            });
+        }
     });
 };
 
