@@ -111,7 +111,7 @@ var projectCtr = function ($scope, $http, $timeout, underscore) {
     };
 };
 
-var projectDetailCtr = function ($scope, $http, $timeout, $routeParams, $window, $location) {
+var projectDetailCtr = function ($scope, $http, $timeout, $routeParams, $window, $location, $filter) {
     $scope.project = $routeParams.project;
 
     $scope.htmlOptions = $scope.editorOptions = {
@@ -127,6 +127,7 @@ var projectDetailCtr = function ($scope, $http, $timeout, $routeParams, $window,
 
     $http.get("/project/config?name=" + $scope.project).success(function (data) {
         $timeout(function () {
+            data.setting = $filter("json")(data.setting);
             $scope.config = data;
         });
     });
@@ -137,6 +138,16 @@ var projectDetailCtr = function ($scope, $http, $timeout, $routeParams, $window,
             $http.post("/project/remove", {name:$scope.project}).success(function () {
                 $location.path("/project");
             });
+        }
+    };
+
+    $scope.isJson = function (json) {
+        console.log(json);
+        try {
+            $.parseJSON(json);
+            return true;
+        } catch (e) {
+            return false;
         }
     };
 
@@ -154,5 +165,5 @@ manageApp.controller("npmCtr", ["$scope", "$http", "$timeout", "underscore", npm
 manageApp.controller("projectCtr", ["$scope", "$http", "$timeout", "underscore", projectCtr]);
 manageApp.controller("navCtr", ["$scope", "$location", navCtr]);
 manageApp.controller("projectDetailCtr", ["$scope", "$http", "$timeout", "$routeParams", "$window",
-    "$location", projectDetailCtr]);
+    "$location", "$filter", projectDetailCtr]);
 

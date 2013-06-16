@@ -26,11 +26,13 @@
 
             <div class="controls">
                 <textarea ui-codemirror="jsOptions" ng-model="config.setting" id="projectConfig"
-                          name="projectConfig" required></textarea>
+                          name="projectConfig" required ui-validate="{'json':'isJson($value)'}"></textarea>
 
                 <br/>
                 <span class="help-block"
                       ng-show="projectForm.projectConfig.$error.required">Project config is required!</span>
+                <span class="help-block"
+                      ng-show="projectForm.projectConfig.$error.json">Please check json format.</span>
 
             </div>
         </div>

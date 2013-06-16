@@ -10,7 +10,7 @@ $(document).ready(function () {
         success:function (config) {
             var $container = $(".dashboard-container");
             $container.html(config.html);
-            window.dashboardConfig = $.parseJSON(config.setting);
+            window.dashboardConfig = config.setting;
             angular.bootstrap($container[0], ["dashboardApp"])
         }
     });

@@ -71,7 +71,7 @@ var ProjectController = {
             }
 
             var fun = function (html) {
-                fs.readFile(dir + "/setting.js", "utf-8", function (err, setting) {
+                fsEx.readJson(dir + "/setting.js", function (err, setting) {
                     if (err) {
                         res.send(error, 500);
                         return;
