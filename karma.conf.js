@@ -12,6 +12,7 @@ preprocessors = {
 files = [
     JASMINE,
     JASMINE_ADAPTER,
+    'public/js/bootstrap/jquery-1.9.1.js',
     'public/js/bootstrap/angular.js',
     'public/js//bootstrap/**/*.js',
     'assets/js/3plib/*.js',
