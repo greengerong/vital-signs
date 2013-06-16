@@ -127,7 +127,6 @@ var ProxyController = {
             var path = getJobPath(req);
             var runner = require(path);
             runner.run(req, res);
-//            requireUtil.removeCache(path);
         } catch (ex) {
             res.send("bad job(" + req.param("plugin") + ":" + req.param("job") + "). error :" + ex, 400);
         }
@@ -135,6 +134,7 @@ var ProxyController = {
     removeCache:function (req, res) {
         try {
             var path = getJobPath(req);
+            console.log(path);
             requireUtil.removeCache(path);
             res.send(200);
         } catch (ex) {

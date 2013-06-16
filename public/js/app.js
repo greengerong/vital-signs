@@ -36,7 +36,7 @@ var pluginsCtr = function ($scope, $http, $timeout) {
         });
 
         $scope.cleanRequireCache = function () {
-            $http.get("/proxy/removeCache?plugin=" + this.cleanJob.pluginName + "&job=" + this.cleanJob.jobName + "&rn=" + Math.random()).success(function () {
+            $http.post("/proxy/removeCache", {plugin:this.cleanJob.pluginName, job:this.cleanJob.jobName}).success(function () {
                 console.log("success");
             });
         }
@@ -63,7 +63,7 @@ var npmCtr = function ($scope, $http, $timeout, underscore) {
 
     $scope.addNpm = function () {
         if ($scope.npmPluginName) {
-            $http.get("/plugins/addNpmPlugin?name=" + $scope.npmPluginName).success(function (data) {
+            $http.post("/plugins/addNpmPlugin", {name:$scope.npmPluginName}).success(function (data) {
                 $timeout(function () {
                     $scope.npmPlugins.push($scope.npmPluginName);
                     $scope.npmPluginName = "";
@@ -97,7 +97,7 @@ var projectCtr = function ($scope, $http, $timeout, underscore) {
     };
     $scope.addProject = function () {
         if ($scope.projectName) {
-            $http.get("/project/new?name=" + $scope.projectName).success(function () {
+            $http.post("/project/new", {name:$scope.projectName}).success(function () {
                 $timeout(function () {
                     $scope.projects.push($scope.projectName);
                     $scope.projectName = "";
