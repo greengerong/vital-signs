@@ -6,11 +6,11 @@
 $(document).ready(function () {
     $.ajax({
         type:"get",
-        url:"/project/config?name=<%-project%>",
+        url:"/project/config?name=<%-project%>&rn=" + Math.random(),
         success:function (config) {
             var $container = $(".dashboard-container");
             $container.html(config.html);
-            window.dashboardConfig = config.setting;
+            window.dashboardConfig = $.parseJSON(config.setting);
             angular.bootstrap($container[0], ["dashboardApp"])
         }
     });

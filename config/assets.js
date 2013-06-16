@@ -7,6 +7,7 @@ module.exports.assets = {
     sequence:[
         'assets/styles',
         'assets/mixins',
-        'assets/js'
+        'assets/js',
+        'plugins'
     ]
 };

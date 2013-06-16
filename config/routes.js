@@ -30,6 +30,10 @@ module.exports.routes = {
     'get /dashboard/:project':{
         controller:'dashboard',
         action:'index'
+    },
+    'get /resource/:type':{
+        controller:'resource',
+        action:'index'
     }
     // If you want to set up a route only for a particular HTTP method/verb
     // (GET, POST, PUT, DELETE) you can specify the verb before the path:

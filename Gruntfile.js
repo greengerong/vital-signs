@@ -23,7 +23,9 @@ module.exports = function (grunt) {
                         expect:true,
                         angular:true,
                         $:true,
-                        console:true
+                        console:true,
+                        app:true,
+                        manageApp:true
                     }
                 },
                 files:{
