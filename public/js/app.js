@@ -140,7 +140,11 @@ var projectDetailCtr = function ($scope, $http, $timeout, $routeParams, $window,
     };
 
     $scope.saveConfig = function () {
-        console.log($scope.config);
+        $http.post("/project/saveConfig", {name:$scope.project, config:$scope.config})
+            .success(function (data) {
+                //TODO:chan to alert-success;
+                console.log("success");
+            });
     };
 };
 

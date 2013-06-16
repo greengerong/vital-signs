@@ -83,6 +83,31 @@ var ProjectController = {
             fun(html);
 
         });
+    },
+    saveConfig:function (req, res) {
+        var config = req.param("config");
+        var project = req.param("name");
+        if (!config || !config.html || !config.setting) {
+            res.send("Html and Setting is required.", 400);
+            return;
+        }
+
+        var dir = _projectDir + project;
+        fs.writeFile(dir + "/view.html", config.html, "utf-8", function (err) {
+            if (err) {
+                res.send(error, 500);
+                return;
+            }
+
+            fs.writeFile(dir + "/setting.js", config.setting, "utf-8", function (err) {
+                if (err) {
+                    res.send(error, 500);
+                    return;
+                }
+                res.send(200);
+            });
+
+        });
     }
 
 };
