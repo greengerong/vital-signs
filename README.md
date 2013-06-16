@@ -6,7 +6,7 @@ Status [![Build Status](https://travis-ci.org/greengerong/vital-signs.png?branch
 ============
 TODO:
 2:客户端dashboard app重构 设计
-3：客户端 js include 自定义 替代 asserts
+3：jenkins css 调整：规定所有plugin的css必须在固定唯一的id下，防止冲突
 5：重构服务端代码 设计
 
 
