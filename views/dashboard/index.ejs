@@ -1,3 +1,4 @@
+<% if (project) { %>
 <div class="dashboard-container" ng-controller="dashboardCtr">
 
 </div>
@@ -6,7 +7,6 @@ $(document).ready(function () {
     $.ajax({
         type:"get",
         url:"/project/config?name=<%-project%>",
-        async:false,
         success:function (config) {
             var $container = $(".dashboard-container");
             $container.html(config.html);
@@ -16,3 +16,8 @@ $(document).ready(function () {
     });
 });
 </script>
+<% } else { %>
+<div>
+<div class="alert-error"><h2>Please input proejct name: like [host]/dashboard/[project]</h2></div>
+</div>
+<% } %>
