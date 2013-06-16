@@ -5,7 +5,7 @@
 var DashboardController = {
 
     index:function (req, res) {
-        var project = req.param("project");
+        var project = req.params.project;
         if (!project) {
             //TODO: render not found view.
         }
