@@ -3,7 +3,7 @@ var fs = require("fs");
 var typeMap = {
     "html":"text/html",
     "js":"text/javascript",
-    "css":"text/csssss"
+    "css":"text/css"
 };
 var ResourceController = {
 
