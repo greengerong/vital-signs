@@ -142,7 +142,6 @@ var projectDetailCtr = function ($scope, $http, $timeout, $routeParams, $window,
     };
 
     $scope.isJson = function (json) {
-        console.log(json);
         try {
             $.parseJSON(json);
             return true;
