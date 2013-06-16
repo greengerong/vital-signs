@@ -11,7 +11,7 @@ var PluginsController = {
     },
 
     upload:function (req, res) {
-        if (!req.files.thumbnail.path || !req.files.thumbnail.name) {
+        if (!req.files.thumbnail || !req.files.thumbnail.path || !req.files.thumbnail.name) {
             res.send(400);
             return;
         }

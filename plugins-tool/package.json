@@ -1,0 +1,19 @@
+{
+  "name": "plugin-tool",
+  "private": true,
+  "version": "0.0.1",
+  "description": "vital sign plugin tool",
+  "dependencies": {
+    "walk": "~2.2.1",
+    "zipstream": "~0.2.1",
+    "form-data": "0.0.10"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node index.js"
+  },
+  "main": "index.js",
+  "repository": "https://github.com/greengerong/vital-signs.git",
+  "author": "",
+  "license": "MIT"
+}

@@ -24,6 +24,7 @@ logs
 results
 
 node_modules
+plugins-tool/node_modules
 
 npm-debug.log
 
