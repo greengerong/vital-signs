@@ -1,24 +1,26 @@
 /*---------------------
-	:: Dashboard 
-	-> controller
----------------------*/
+ :: Dashboard
+ -> controller
+ ---------------------*/
 var DashboardController = {
 
-	// To trigger this action locally, visit: `http://localhost:port/dashboard/index`
-	index: function (req,res) {
+    index:function (req, res) {
+        var project = req.param("project");
+        if (!project) {
+            //TODO: render not found view.
+        }
 
-		// This will render the view: /Users/twer/project/opensource/vital-signs/views/dashboard/index.ejs
-		res.view();
+        res.view({project:project});
 
-	},
+    },
 
-	// To trigger this action locally, visit: `http://localhost:port/dashboard/config`
-	config: function (req,res) {
+    // To trigger this action locally, visit: `http://localhost:port/dashboard/config`
+    config:function (req, res) {
 
-		// This will render the view: /Users/twer/project/opensource/vital-signs/views/dashboard/config.ejs
-		res.view();
+        // This will render the view: /Users/twer/project/opensource/vital-signs/views/dashboard/config.ejs
+        res.view();
 
-	}
+    }
 
 };
 module.exports = DashboardController;
