@@ -5,9 +5,8 @@ Status [![Build Status](https://travis-ci.org/greengerong/vital-signs.png?branch
 
 ============
 TODO:
-2:客户端dashboard app整理 使用插件
+2:客户端dashboard app重构 设计
 3：客户端 js include 自定义 替代 asserts
-4：重构客户端 app
 5：重构服务端代码 设计
 
 
