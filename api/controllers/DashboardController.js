@@ -10,7 +10,7 @@ var DashboardController = {
             //TODO: render not found view.
         }
 
-        res.view({project:project});
+        res.view({project:project, title:project + "-dashboard"});
 
     },
 
