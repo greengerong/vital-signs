@@ -22,11 +22,12 @@ module.exports = function (grunt) {
                         it:true,
                         expect:true,
                         angular:true,
-                        $:true
+                        $:true,
+                        console:true
                     }
                 },
                 files:{
-                    src:['asserts/**/*.js', "plugins/**/*.js", "spec/client/**/*spec.js", "spec/client/**/*Spec.js"]
+                    src:['asserts/**/*.js', "public/js/manage/*.js", "plugins/**/*.js", "spec/client/**/*spec.js", "spec/client/**/*Spec.js"]
                 }
             },
             node:{

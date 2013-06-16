@@ -39,7 +39,7 @@ var pluginsCtr = function ($scope, $http, $timeout) {
             $http.post("/proxy/removeCache", {plugin:this.cleanJob.pluginName, job:this.cleanJob.jobName}).success(function () {
                 console.log("success");
             });
-        }
+        };
     });
 };
 
@@ -56,7 +56,8 @@ var npmCtr = function ($scope, $http, $timeout, underscore) {
             var result = underscore.filter($scope.npmPlugins, function (item) {
                 return item.toLowerCase() === npmPluginName.toLowerCase();
             });
-            return result.length == 0;
+
+            return result.length === 0;
         }
         return true;
     };
@@ -91,7 +92,7 @@ var projectCtr = function ($scope, $http, $timeout, underscore) {
             var result = underscore.filter($scope.projects, function (item) {
                 return item.toLowerCase() === projectName.toLowerCase();
             });
-            return result.length == 0;
+            return result.length === 0;
         }
         return true;
     };
@@ -133,7 +134,7 @@ var projectDetailCtr = function ($scope, $http, $timeout, $routeParams, $window,
     $scope.remove = function () {
         var confirm = $window.confirm("Do you make sure to remove this project?");
         if (confirm) {
-            $http.post("/project/remove", {name:$scope.project}).success(function (data) {
+            $http.post("/project/remove", {name:$scope.project}).success(function () {
                 $location.path("/project");
             });
         }
@@ -141,7 +142,7 @@ var projectDetailCtr = function ($scope, $http, $timeout, $routeParams, $window,
 
     $scope.saveConfig = function () {
         $http.post("/project/saveConfig", {name:$scope.project, config:$scope.config})
-            .success(function (data) {
+            .success(function () {
                 //TODO:chan to alert-success;
                 console.log("success");
             });

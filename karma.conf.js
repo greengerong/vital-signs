@@ -12,11 +12,12 @@ preprocessors = {
 files = [
     JASMINE,
     JASMINE_ADAPTER,
-    'assets/bootstrap/angular.js',
-    'assets/bootstrap/**/*.js',
+    'public/js/bootstrap/angular.js',
+    'public/js//bootstrap/**/*.js',
     'assets/js/3plib/*.js',
-    'assets/js/app.js',
+    'assets/js/self/app.js',
     'assets/js/**/*.js',
+    'public/js/**/*.js',
     'plugins/**/*.js',
     'spec/client/**/*.js'
 ];
