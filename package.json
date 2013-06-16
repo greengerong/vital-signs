@@ -1,29 +1,29 @@
 {
-    "name":"vital-signs",
-    "private":true,
-    "version":"0.0.1",
-    "description":"vital sign",
-    "dependencies":{
-        "sails":"0.8.91",
-        "optimist":"0.4.0",
-        "unzip":"0.1.5",
-        "fs-extra":"~0.6.1"
-    },
-    "devDependencies":{
-        "grunt":"*",
-        "grunt-contrib-jshint":"*",
-        "grunt-contrib-nodeunit":"*",
-        "grunt-karma":"*",
-        "nodemock":"~0.2.17"
-
-    },
-    "scripts":{
-        "start":"sails lift",
-        "debug":"sails lift",
-        "test":"grunt ci"
-    },
-    "main":"app.js",
-    "repository":"https://github.com/greengerong/vital-signs.git",
-    "author":"",
-    "license":"MIT"
+  "name": "vital-signs",
+  "private": true,
+  "version": "0.0.1",
+  "description": "vital sign",
+  "dependencies": {
+    "sails": "0.8.91",
+    "optimist": "0.4.0",
+    "unzip": "0.1.5",
+    "fs-extra": "~0.6.1",
+    "walk": "~2.2.1"
+  },
+  "devDependencies": {
+    "grunt": "*",
+    "grunt-contrib-jshint": "*",
+    "grunt-contrib-nodeunit": "*",
+    "grunt-karma": "*",
+    "nodemock": "~0.2.17"
+  },
+  "scripts": {
+    "start": "sails lift",
+    "debug": "sails lift",
+    "test": "grunt ci"
+  },
+  "main": "app.js",
+  "repository": "https://github.com/greengerong/vital-signs.git",
+  "author": "",
+  "license": "MIT"
 }
