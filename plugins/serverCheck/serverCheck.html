@@ -1,0 +1,8 @@
+<div class="well">
+    <h2 style="margin-left:25px">Server check</h2>
+    <ul style="font-size: 0.52em;">
+        <li ng-repeat="item in check" ng-class="{true:'alert-success',false:'alert-error'}[item.result]">
+            <a href="{{item.link}}">{{item.name}}</a>
+        </li>
+    </ul>
+</div>
