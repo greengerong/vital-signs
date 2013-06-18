@@ -1,0 +1,12 @@
+<div class="well">
+    <h2 style="margin-left:25px">Sonar basic</h2>
+
+    <div ng-repeat="item in sonarBasic.group">
+        <h3>{{item.name}}</h3>
+        <table class="table table-bordered table-striped">
+            <tr>
+                <td ng-repeat="col in item.cols">{{col.name}}:{{item.result[col.key]}}</td>
+            </tr>
+        </table>
+    </div>
+</div>

@@ -13,5 +13,24 @@
         "url": "http://www.baidu.com",
         "match": "百度"
     }
-]
+],
+    "sonarBasic": {
+    "resource":"org.apache.openejb:openejb",
+    "url":"http://nemo.sonarsource.org/",
+     "group":[
+        {
+            "name":"coverage",
+            "cols":[
+                {
+                    "name":"line of code",
+                    "key":"ncloc"
+                },
+                {
+                    "name":"coverage",
+                    "key":"coverage"
+                }
+            ]
+        }
+    ]
+}
 }
