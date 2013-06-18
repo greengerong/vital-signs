@@ -19,6 +19,6 @@ exports['plugins controller'] = {
 //        ctr.upload(req, res);
 //
 //        test.strictEqual(unzip.assert(), true);
-//        test.done();
+        test.done();
     }
 };

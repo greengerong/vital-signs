@@ -13,7 +13,6 @@ app.directive("webServerAvailability", ["proxy", "timer", "$timeout", function (
                 angular.forEach($scope.check, function (c) {
                     proxy.get(c.url, function (html) {
                         $timeout(function () {
-                            console.log(html.match(c.match))
                             c.result = html.match(c.match).length > 0;
                         });
                     });
