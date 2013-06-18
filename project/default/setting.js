@@ -7,9 +7,11 @@
         "Utilities"
     ]
 },
-    "check":[{
-    "name":"百度",
-    "url":"http://www.baidu.com",
-    "match":"百度"
-}]
+    "webServerAvailability": [
+    {
+        "name": "百度",
+        "url": "http://www.baidu.com",
+        "match": "百度"
+    }
+]
 }

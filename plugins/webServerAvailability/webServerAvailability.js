@@ -1,13 +1,13 @@
-app.directive("serverCheck", ["proxy", "timer", "$timeout", function (proxy, timer, $timeout) {
+app.directive("webServerAvailability", ["proxy", "timer", "$timeout", function (proxy, timer, $timeout) {
     return {
         priority:0,
-        templateUrl:'/resource/html?path=plugins/serverCheck/serverCheck.html',
+        templateUrl:'/resource/html?path=plugins/webServerAvailability/webServerAvailability.html',
         replace:true,
         transclude:false,
         restrict:'EA',
         scope:true,
         controller:function ($scope) {
-            $scope.check = $scope.dashboardConfig.check || [];
+            $scope.check = $scope.dashboardConfig.webServerAvailability || [];
 
             var checker = function () {
                 angular.forEach($scope.check, function (c) {
