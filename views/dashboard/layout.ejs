@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title><%- title %></title>
+
+		<!-- Viewport mobile tag for sensible mobile support -->
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+		<!-- Stylesheets from your assets folder are included here -->
+		<%- assets.css() %>
+        <% resource.css.forEach(function(css){ %>
+        <link rel="stylesheet" href="/resource/css?path=<%-css%>" />
+        <% }) %>
+        <script src="/js/bootstrap/jquery-1.9.1.js"></script>
+        <script src="/js/bootstrap/angular.js"></script>
+        <!--[if lte IE 8]>
+           <script>
+            window.myCustomTags = [];
+            </script>
+            <script src="/js/bootstrap/ui-utils-ieshiv.js"></script>
+
+           <script src="/js/bootstrap/jshtml5shiv.js"></script>
+         <![endif]-->
+	</head>
+
+	<body>
+		<%- body %>
+		<!-- Javascripts from your assets folder are included here -->
+		<%- assets.js() %>
+        <% resource.js.forEach(function(js){ %>
+        <script type="text/javascript" src="/resource/js?path=<%-js%>"></script>
+        <% }) %>
+	</body>
+</html>
