@@ -84,21 +84,6 @@ var app = angular.module("dashboardApp", [])
             $window.setInterval(callback, $window.dashboardConfig.timer || 1000);
         }
     };
-}]).filter("duration",function () {
-        var calculateDuration = function (inuput) {
-            var durationSec = parseInt(inuput, 10);
-            var minutes = parseInt(durationSec / (60 * 1000), 10);
-            var secs = parseInt((durationSec % (60 * 1000)) / 1000, 10);
-
-            return minutes + " mins, " + secs + " secs";
-        };
-        return calculateDuration;
-    }).filter("notEmpty", ['underscore', function (underscore) {
-    return function (input) {
-        return underscore.filter(input, function (item) {
-            return !!item;
-        });
-    };
 }]);
 
 function dashboardCtr($scope, $window) {

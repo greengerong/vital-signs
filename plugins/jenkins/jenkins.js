@@ -1,4 +1,19 @@
-app.directive("jenkins", ["proxy", "timer", "$timeout", function (proxy, timer, $timeout) {
+app.filter("duration",function () {
+    var calculateDuration = function (inuput) {
+        var durationSec = parseInt(inuput, 10);
+        var minutes = parseInt(durationSec / (60 * 1000), 10);
+        var secs = parseInt((durationSec % (60 * 1000)) / 1000, 10);
+
+        return minutes + " mins, " + secs + " secs";
+    };
+    return calculateDuration;
+}).filter("notEmpty", ['underscore', function (underscore) {
+    return function (input) {
+        return underscore.filter(input, function (item) {
+            return !!item;
+        });
+    };
+}]).directive("jenkins", ["proxy", "timer", "$timeout", function (proxy, timer, $timeout) {
     return {
         priority:0,
         templateUrl:'/resource/html?path=plugins/jenkins/jenkins.html',

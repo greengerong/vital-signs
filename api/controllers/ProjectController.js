@@ -71,7 +71,7 @@ var ProjectController = {
             }
 
             var fun = function (html) {
-                fsEx.readJson(dir + "/setting.js", function (err, setting) {
+                fsEx.readJson(dir + "/setting.json", function (err, setting) {
                     if (err) {
                         res.send(error, 500);
                         return;
@@ -99,7 +99,7 @@ var ProjectController = {
                 return;
             }
 
-            fs.writeFile(dir + "/setting.js", config.setting, "utf-8", function (err) {
+            fs.writeFile(dir + "/setting.json", config.setting, "utf-8", function (err) {
                 if (err) {
                     res.send(error, 500);
                     return;
