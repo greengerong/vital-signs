@@ -12,9 +12,9 @@ manageApp.
     return $window._;
 }]);
 
-var pluginsCtr = function ($scope, $http, $timeout) {
+var pluginsCtr = function ($scope, $http, $timeout, $dialog) {
 
-    var getDescription = function (plugins) {
+    var getDescription = function (plugins, $dialog) {
         angular.forEach(plugins, function (item) {
             $http.get("/plugins/about?name=" + item.key).success(
                 function (item) {
@@ -37,13 +37,17 @@ var pluginsCtr = function ($scope, $http, $timeout) {
 
         $scope.cleanRequireCache = function () {
             $http.post("/proxy/removeCache", {plugin:this.cleanJob.pluginName, job:this.cleanJob.jobName}).success(function () {
-                console.log("success");
+                $dialog.messageBox('clean cache success:', 'clean cache success.',
+                    [
+                        {result:'ok', label:'OK', cssClass:'btn-info'}
+                    ])
+                    .open();
             });
         };
     });
 };
 
-var npmCtr = function ($scope, $http, $timeout, underscore) {
+var npmCtr = function ($scope, $http, $timeout, underscore, $dialog) {
 
     $http.get("/plugins/allNpmPlugins").success(function (data) {
         $timeout(function () {
@@ -68,10 +72,18 @@ var npmCtr = function ($scope, $http, $timeout, underscore) {
                 $timeout(function () {
                     $scope.npmPlugins.push($scope.npmPluginName);
                     $scope.npmPluginName = "";
-                    $scope.result = data;
+                    $dialog.messageBox('add npm plugin success:', 'add npm plugin success.',
+                        [
+                            {result:'ok', label:'OK', cssClass:'btn-info'}
+                        ])
+                        .open();
                 });
             }).error(function (error) {
-                    $scope.result = "error:" + error;
+                    $dialog.messageBox('add npm plugin failed:', "error:" + error,
+                        [
+                            {result:'ok', label:'OK', cssClass:'btn-info'}
+                        ])
+                        .open();
                 });
         }
     };
@@ -80,7 +92,7 @@ var npmCtr = function ($scope, $http, $timeout, underscore) {
 var navCtr = function ($scope, $location) {
     $scope.active = $location.$$path || "/home";
 };
-var projectCtr = function ($scope, $http, $timeout, underscore) {
+var projectCtr = function ($scope, $http, $timeout, underscore, $dialog) {
     $http.get("/project/all").success(function (data) {
         $timeout(function () {
             $scope.projects = data;
@@ -102,16 +114,24 @@ var projectCtr = function ($scope, $http, $timeout, underscore) {
                 $timeout(function () {
                     $scope.projects.push($scope.projectName);
                     $scope.projectName = "";
-                    $scope.result = "success";
+                    $dialog.messageBox('new project :', 'new project success.',
+                        [
+                            {result:'ok', label:'OK', cssClass:'btn-info'}
+                        ])
+                        .open();
                 });
             }).error(function (error) {
-                    $scope.result = "error:" + error;
+                    $dialog.messageBox('new project failed:', "error:" + error,
+                        [
+                            {result:'ok', label:'OK', cssClass:'btn-info'}
+                        ])
+                        .open();
                 });
         }
     };
 };
 
-var projectDetailCtr = function ($scope, $http, $timeout, $routeParams, $window, $location, $filter) {
+var projectDetailCtr = function ($scope, $http, $timeout, $routeParams, $window, $location, $filter, $dialog) {
     $scope.project = $routeParams.project;
 
     $scope.htmlOptions = $scope.editorOptions = {
@@ -133,12 +153,18 @@ var projectDetailCtr = function ($scope, $http, $timeout, $routeParams, $window,
     });
 
     $scope.remove = function () {
-        var confirm = $window.confirm("Do you make sure to remove this project?");
-        if (confirm) {
-            $http.post("/project/remove", {name:$scope.project}).success(function () {
-                $location.path("/project");
+        $dialog.messageBox('Are you sure?', 'Are you sure to remove this project?',
+            [
+                {result:'no', label:'Cancel', cssClass:'btn-info'},
+                {result:'ok', label:'OK', cssClass:'btn-info'}
+            ])
+            .open().then(function (result) {
+                if (result === "ok") {
+                    $http.post("/project/remove", {name:$scope.project}).success(function () {
+                        $location.path("/project");
+                    });
+                }
             });
-        }
     };
 
     $scope.isJson = function (json) {
@@ -153,16 +179,19 @@ var projectDetailCtr = function ($scope, $http, $timeout, $routeParams, $window,
     $scope.saveConfig = function () {
         $http.post("/project/saveConfig", {name:$scope.project, config:$scope.config})
             .success(function () {
-                //TODO:chan to alert-success;
-                console.log("success");
+                $dialog.messageBox('project config saved:', 'project config save success.',
+                    [
+                        {result:'ok', label:'OK', cssClass:'btn-info'}
+                    ])
+                    .open();
             });
     };
 };
 
-manageApp.controller("pluginsCtr", ["$scope", "$http", "$timeout", pluginsCtr]);
-manageApp.controller("npmCtr", ["$scope", "$http", "$timeout", "underscore", npmCtr]);
-manageApp.controller("projectCtr", ["$scope", "$http", "$timeout", "underscore", projectCtr]);
+manageApp.controller("pluginsCtr", ["$scope", "$http", "$timeout", "$dialog", pluginsCtr]);
+manageApp.controller("npmCtr", ["$scope", "$http", "$timeout", "underscore", "$dialog", npmCtr]);
+manageApp.controller("projectCtr", ["$scope", "$http", "$timeout", "underscore", "$dialog", projectCtr]);
 manageApp.controller("navCtr", ["$scope", "$location", navCtr]);
 manageApp.controller("projectDetailCtr", ["$scope", "$http", "$timeout", "$routeParams", "$window",
-    "$location", "$filter", projectDetailCtr]);
+    "$location", "$filter", "$dialog", projectDetailCtr]);
 
