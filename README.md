@@ -1,7 +1,7 @@
 # vital-signs
 ### a Sails application
 Status [![Build Status](https://travis-ci.org/greengerong/vital-signs.png?branch=master)](https://travis-ci.org/greengerong/vital-signs)
-初始化项目测试，请安装npm install grunt-karma --save-dev
+build failing dut to travis env.
 
 ============
 TODO:
@@ -10,6 +10,7 @@ TODO:
 4：TODO
 5：重构服务端代码 设计
 6:写个node本地工具，打包插件和上传插件工具。 现在为上传问题需要解决
+7:持续部署
 
 
 =========
