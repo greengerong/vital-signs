@@ -4,7 +4,7 @@ module.exports = {
     appName:"vital-signs",
 
     // Port this Sails application will live on
-    port:1337,
+    port:process.env.PORT || 1337,
 
     // The environment the app is deployed in
     // (`development` or `production`)
@@ -30,7 +30,7 @@ module.exports = {
     express:{
         customMiddleware:function (app) {
             app.error(function (err, req, res, next) {
-               console.log(arguments,"111");
+                console.log(arguments, "111");
                 if (req.xhr) {
                     res.send(500, err);
                     return;
