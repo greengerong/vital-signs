@@ -1,6 +1,12 @@
 <% if (project) { %>
-<div class="text-right" style="padding-right:50px;"><a href="/manage#/project/<%-project%>">manage</a></div>
-<div class="dashboard-container" ng-controller="dashboardCtr">
+<!--<div class="navbar container-fluid">-->
+<!--<div class="navbar-inner">-->
+    <!--<ul class="nav">-->
+        <!--<li class="active"><a href="/manage#/project/<%-project%>">Manage</a></li>-->
+    <!--</ul>-->
+<!--</div>-->
+<!--</div>-->
+<div id="dashboardContainer" class="container-fluid" ng-controller="dashboardCtr">
 
 </div>
 <script type="text/javascript">
@@ -9,7 +15,7 @@ $(document).ready(function () {
         type:"get",
         url:"/project/config?name=<%-project%>&rn=" + Math.random(),
         success:function (config) {
-            var $container = $(".dashboard-container");
+            var $container = $("#dashboardContainer");
             $container.html(config.html);
             window.dashboardConfig = config.setting;
             angular.bootstrap($container[0], ["dashboardApp"])
