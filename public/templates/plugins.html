@@ -20,56 +20,56 @@
             </div>
         </div>
     </div>
-    <div class="span4">
-        <form method="post" name="addPlugins" enctype="multipart/form-data" action="/plugins/upload">
-            <fieldset>
-                <legend>Add plugin</legend>
-                <div class="control-group">
-                    <p>Plugins must include all the file (html, js, css, job) and a "about.txt"(In order to explain to
-                        how
-                        to use this plugin.)</p>
-                    <hr/>
-                    <div class="controls">
-                        <input type="file" class="input-medium" placeholder="Chose plugins zip..." id="thumbnail"
-                               name="thumbnail">
-                    </div>
-                </div>
-                <div class="text-right">
-                    <input type="submit" class="btn btn-primary" value="add plugin">
-                </div>
-            </fieldset>
-        </form>
-        <form name="cleanJobCacheForm">
-            <fieldset>
-                <legend>Clean job cache</legend>
-                <p>some desc</p>
-                <hr/>
-                <div class="control-group" ng-class="{true:'error'}[cleanJobCacheForm.pluginName.$invalid]">
+    <!--<div class="span4">-->
+        <!--<form method="post" name="addPlugins" enctype="multipart/form-data" action="/plugins/upload">-->
+            <!--<fieldset>-->
+                <!--<legend>Add plugin</legend>-->
+                <!--<div class="control-group">-->
+                    <!--<p>Plugins must include all the file (html, js, css, job) and a "about.txt"(In order to explain to-->
+                        <!--how-->
+                        <!--to use this plugin.)</p>-->
+                    <!--<hr/>-->
+                    <!--<div class="controls">-->
+                        <!--<input type="file" class="input-medium" placeholder="Chose plugins zip..." id="thumbnail"-->
+                               <!--name="thumbnail">-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<div class="text-right">-->
+                    <!--<input type="submit" class="btn btn-primary" value="add plugin">-->
+                <!--</div>-->
+            <!--</fieldset>-->
+        <!--</form>-->
+        <!--<form name="cleanJobCacheForm">-->
+            <!--<fieldset>-->
+                <!--<legend>Clean job cache</legend>-->
+                <!--<p>some desc</p>-->
+                <!--<hr/>-->
+                <!--<div class="control-group" ng-class="{true:'error'}[cleanJobCacheForm.pluginName.$invalid]">-->
 
-                    <label class="control-label" for="pluginName">Plugin</label>
+                    <!--<label class="control-label" for="pluginName">Plugin</label>-->
 
-                    <div class="controls">
-                        <input type="text" class="input-medium" placeholder="Typing plugin name.." id="pluginName"
-                               name="pluginName" ng-model="cleanJob.pluginName" required="">
-                        <span class="help-block" ng-show="cleanJobCacheForm.pluginName.$error.required">Plugin name is required!</span>
-                    </div>
-                </div>
-                <div class="control-group" ng-class="{true:'error'}[cleanJobCacheForm.jobName.$invalid]">
+                    <!--<div class="controls">-->
+                        <!--<input type="text" class="input-medium" placeholder="Typing plugin name.." id="pluginName"-->
+                               <!--name="pluginName" ng-model="cleanJob.pluginName" required="">-->
+                        <!--<span class="help-block" ng-show="cleanJobCacheForm.pluginName.$error.required">Plugin name is required!</span>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<div class="control-group" ng-class="{true:'error'}[cleanJobCacheForm.jobName.$invalid]">-->
 
-                    <label class="control-label" for="jobName">Job</label>
+                    <!--<label class="control-label" for="jobName">Job</label>-->
 
-                    <div class="controls">
-                        <input type="text" class="input-medium" placeholder="Typing job name.." id="jobName"
-                               name="jobName" ng-model="cleanJob.jobName" required="">
-                        <span class="help-block" ng-show="cleanJobCacheForm.jobName.$error.required">Job name is required!</span>
+                    <!--<div class="controls">-->
+                        <!--<input type="text" class="input-medium" placeholder="Typing job name.." id="jobName"-->
+                               <!--name="jobName" ng-model="cleanJob.jobName" required="">-->
+                        <!--<span class="help-block" ng-show="cleanJobCacheForm.jobName.$error.required">Job name is required!</span>-->
 
-                    </div>
-                </div>
-                <div class="text-right">
-                    <a class="btn btn-primary" ng-click="cleanRequireCache();"
-                       ng-disabled="cleanJobCacheForm.$invalid|| !cleanJobCacheForm.$dirty">clean job cache</a>
-                </div>
-            </fieldset>
-        </form>
-    </div>
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<div class="text-right">-->
+                    <!--<a class="btn btn-primary" ng-click="cleanRequireCache();"-->
+                       <!--ng-disabled="cleanJobCacheForm.$invalid|| !cleanJobCacheForm.$dirty">clean job cache</a>-->
+                <!--</div>-->
+            <!--</fieldset>-->
+        <!--</form>-->
+    <!--</div>-->
 </div>
