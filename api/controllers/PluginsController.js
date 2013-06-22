@@ -18,11 +18,11 @@ var PluginsController = {
         var tmp_path = req.files.thumbnail.path;
         var fileName = req.files.thumbnail.name;
         var name = fileName.substr(0, fileName.lastIndexOf("."));
-        _unzip(tmp_path, name, _pluginsDir + name);
+        _unzip(tmp_path, name, _pluginsDir);
         res.redirect("manage/index")
     },
     allPlugins:function (req, res) {
-        var exclude = ["app.js", ".DS_Store"];
+        var exclude = ["app.js", ".DS_Store", "__MACOSX"];
         fs.readdir(_pluginsDir, function (error, list) {
             if (error) {
                 res.send(error, 500);
@@ -73,7 +73,7 @@ var PluginsController = {
             return;
         }
 
-        var cmd = "npm install " + name + " --save-dev";
+        var cmd = "npm install " + name;
         child_process.exec(cmd, function (error, stdout) {
             if (error) {
                 res.send(error, 500);
