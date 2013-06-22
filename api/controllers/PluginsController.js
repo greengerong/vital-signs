@@ -18,7 +18,7 @@ var PluginsController = {
         var tmp_path = req.files.thumbnail.path;
         var fileName = req.files.thumbnail.name;
         var name = fileName.substr(0, fileName.lastIndexOf("."));
-        _unzip(tmp_path + name, name, _pluginsDir);
+        _unzip(tmp_path, name, _pluginsDir + name);
         res.redirect("manage/index")
     },
     allPlugins:function (req, res) {
