@@ -79,7 +79,7 @@ var npmCtr = function ($scope, $http, $timeout, underscore, $dialog) {
                         .open();
                 });
             }).error(function (error) {
-                    $dialog.messageBox('add npm plugin failed:', "error:" + error,
+                    $dialog.messageBox('add npm plugin failed:', "add npm plugin failed.",
                         [
                             {result:'ok', label:'OK', cssClass:'btn-info'}
                         ])
@@ -121,7 +121,7 @@ var projectCtr = function ($scope, $http, $timeout, underscore, $dialog) {
                         .open();
                 });
             }).error(function (error) {
-                    $dialog.messageBox('new project failed:', "error:" + error,
+                    $dialog.messageBox('New project failed:', "New project failed.",
                         [
                             {result:'ok', label:'OK', cssClass:'btn-info'}
                         ])
