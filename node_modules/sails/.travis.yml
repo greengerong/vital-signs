@@ -1,0 +1,28 @@
+language: node_js
+
+node_js:
+  - "0.10"
+  - "0.11"
+
+services:
+  - mongodb
+  - redis-server
+  - mysql
+
+before_script:
+  - npm install sails-mysql sails-mongo sails-redis
+  - mysql -e "create database waterline;"
+
+notifications:
+  email: false
+  irc:
+    channels:
+      - "irc.freenode.org#sailsjs"
+    on_success: never
+    on_failure: always
+    template:
+      - "%{commit} by %{author} has failed:"
+      - "Travis states: %{message}"
+      - "Build Details: %{build_url}"
+      - "Change View: %{compare_url}"
+    skip_join: true
